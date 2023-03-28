@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>나만의 미니홈피</title>
+	<style>
+		/* 전체 body 스타일 */
+		body {
+			font-family: Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+
+		/* 타이틀 스타일 */
+		h1 {
+			color: #204acb;
+			text-align: center;
+			margin-top: 50px;
+            
+		}
+
+		/* 메인 컨테이너 스타일 */
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			margin-top: 50px;
+		}
+
+		/* 프로필 이미지 스타일 */
+		.profile-img {
+			width: 200px;
+			height: 200px;
+			border-radius: 50%;
+			object-fit: cover;
+			margin-bottom: 20px;
+		}
+
+        .container2 {position: relative;
+            display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			margin-top: 50px;
+            
+		}
+        
+		.prev, .next {
+			position: absolute;
+     
+			top: 50%;
+			transform: translateY(-50%);
+			font-size: 20px;
+			font-weight: bold;
+			padding: 10px;
+			background-color: rgba(63, 118, 182, 0.7);
+			border: none;
+			cursor: pointer;
+			transition: all 0.3s ease;
+            
+		}
+		.prev:hover, .next:hover {
+			background-color: rgba(255, 255, 255, 0.9);
+		}
+		.prev {
+			left: 0;
+		}
+		.next {
+			right: 0;
+		}
+
+        .slide {
+			width: 400px;
+			height: 400px;
+			object-fit: cover;
+			margin-bottom: 20px;
+		}
+
+
+		/* 소개 텍스트 스타일 */
+		.intro {
+			font-size: 20px;
+	
+			color: #666;
+			text-align: center;
+			max-width: 600px;
+			
+		}
+
+        .slide-number{
+            font-size: 20px;
+			color: #7125d4;
+			text-align: center;
+
+			
+        }
+
+		
+	</style>
+</head>
+<body>
+	<!-- 타이틀 -->
+	<h1>만화 보세요</h1>
+
+	<!-- 메인 컨테이너 -->
+	<div class="container">
+		<!-- 프로필 이미지 -->
+		<img class="profile-img" src="https://avatars.githubusercontent.com/u/83626845?s=400&u=7319f0f0478c896c480a6366a82fd465b1189406&v=4" alt="프로필 이미지">
+
+		<!-- 소개 텍스트 -->
+		<p class="intro">안녕하세요! 저는 김율무입니다. 저의 멋진 자태를 보시죠.</p>
+
+	</div>
+
+    <div class="container2">
+        <!-- 소개 텍스트 -->
+		<p class="intro">룸메이트 Y씨 1화</p>
+        <!--<p class="slide-number">/8</p>-->
+		<!-- 슬라이드 쇼 이미지를 담는 div -->
+		<div class="slideshow">
+			<img class="slide" src="img/cat (2).png">
+			<img class="slide" src="img/cat (8).png">
+			<img class="slide" src="img/cat (7).png">
+            <img class="slide" src="img/cat (4).png">
+            <img class="slide" src="img/cat (5).png">
+            <img class="slide" src="img/cat (6).png">
+            <img class="slide" src="img/cat (3).png">
+            <img class="slide" src="img/cat (1).png">
+		</div>
+
+        <!-- 이전 버튼 -->
+        <button class="prev" onclick="prevSlide()">이전</button>
+		<!-- 다음 버튼 -->
+		<button class="next" onclick="nextSlide()">다음</button>
+	</div>
+
+	<script>
+        let slideNumber = document.getElementsByClassName("slide-number");
+        function updateSlideNumber(slideIndex) {
+            slideNumber.innerText = `${slideIndex + 1}/${slideCount}`;
+                }
+		var slideIndex = 1;
+
+		showSlides(slideIndex);
+
+		
+        function prevSlide() {
+            showSlides(slideIndex -= 1);  
+        if (slideIndex === 0) {
+            return;
+            }
+            slideIndex--;
+         updateSlideNumber(slideIndex);
+        }
+
+        function nextSlide() {
+        showSlides(slideIndex += 1);
+        if (slideIndex === slideCount - 1) {
+        return;
+        }
+        slideIndex++;
+         updateSlideNumber(slideIndex);
+        }
+
+		function showSlides(n) {
+			var i;
+			var slides = document.getElementsByClassName("slide");
+			if (n > slides.length) {slideIndex = 1}
+			if (n < 1) {slideIndex = slides.length}
+			for (i = 0; i < slides.length; i++) {
+				slides[i].style.display = "none";
+			}
+			slides[slideIndex-1].style.display = "block";
+		}
+	</script>
+
+</body>
+</html>
